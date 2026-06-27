@@ -40,6 +40,7 @@ class SupplyChainNode:
         """
         self.name = name
         self.inventory = initial_inventory
+        self._initial_inventory = initial_inventory
         self.capacity = capacity
         self.lead_time = lead_time
         self.pending_shipments = []  # (arrival_day, amount) tuples
@@ -168,6 +169,24 @@ class SupplyChainNode:
         """
         return self.history
 
+    def reset(self) -> None:
+        """Reset the node to its initial state.
++
+        Restores inventory, clears pending shipments and order backlog, and
+        rebuilds the history to the same state recorded at construction.
+        """
+        self.inventory = self._initial_inventory
+        self.pending_shipments = []
+        self.order_backlog = 0.0
+        self.history = {
+            'inventory': [self._initial_inventory],
+            'orders_received': [0.0],
+            'orders_fulfilled': [0.0],
+            'shipments_sent': [0.0],
+            'shipments_received': [0.0],
+            'backlog': [0.0],
+        }
+
 
 class Factory(SupplyChainNode):
     """A factory node that produces new products.
@@ -242,6 +261,12 @@ class Factory(SupplyChainNode):
         self.history['production'].append(0.0)
         self.history['production_cost'].append(0.0)
 
+    def reset(self) -> None:
+        """Reset the factory, including its production history."""
+        super().reset()
+        self.history['production'] = [0.0]
+        self.history['production_cost'] = [0.0]
+
 
 class Distributor(SupplyChainNode):
     """A distributor node that moves products between supply chain nodes.
@@ -311,6 +336,11 @@ class Distributor(SupplyChainNode):
         
         # Initialize next day's shipping metrics
         self.history['shipping_cost'].append(0.0)
+
+    def reset(self) -> None:
+        """Reset the distributor, including its shipping-cost history."""
+        super().reset()
+        self.history['shipping_cost'] = [0.0]
 
 
 class Retailer(SupplyChainNode):
@@ -420,6 +450,15 @@ class Retailer(SupplyChainNode):
         self.history['demand'].append(0.0)
         self.history['holding_cost'].append(0.0)
         self.history['stockout_cost'].append(0.0)
+
+    def reset(self) -> None:
+        """Reset the retailer, including its sales and cost histories."""
+        super().reset()
+        self.history['sales'] = [0.0]
+        self.history['revenue'] = [0.0]
+        self.history['demand'] = [0.0]
+        self.history['holding_cost'] = [0.0]
+        self.history['stockout_cost'] = [0.0]
 
 
 class SupplyChainLink:

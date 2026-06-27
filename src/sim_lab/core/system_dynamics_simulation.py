@@ -292,7 +292,7 @@ class SystemDynamicsSimulation(BaseSimulation):
             
             # Solve the ODE system
             solution = scipy.integrate.solve_ivp(
-                self.derivatives,
+                lambda t, y: self.derivatives(y, t),
                 [0, self.total_time],
                 initial_state,
                 method=self.integration_method,

@@ -7,10 +7,10 @@ from typing import Any, Dict, List, Optional, Union
 
 
 class BaseSimulation(ABC):
-    """Base class for all SimNexus simulations.
+    """Base class for all SimLab simulations.
     
     This abstract class defines the common interface and utility methods
-    for all simulation types in the SimNexus package.
+    for all simulation types in the SimLab package.
     
     Attributes:
         random_seed (Optional[int]): Seed for random number generation to ensure reproducible results

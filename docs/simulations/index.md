@@ -1,80 +1,104 @@
 # SimLab Simulations
 
-SimLab offers a comprehensive collection of simulation tools for modeling complex systems across different domains. All simulators follow a consistent interface pattern, are statically typed, and provide robust validation and error handling.
+SimLab offers a comprehensive collection of simulation tools for modeling complex
+systems. Every simulator inherits from `BaseSimulation`, registers itself with the
+`SimulatorRegistry`, validates its parameters, and supports reproducible stochastic
+runs through `random_seed`.
 
-## Simulation Categories
+## Organising principle: modelling paradigm
 
-Our simulations are organized into the following categories:
+Simulations are grouped by **how state and time advance** — the modelling paradigm —
+because that is how the subject is taught and how the engines differ underneath. A
+given simulator also belongs to one or more application domains (finance, ecology,
+social science, physics, ...).
 
-### Basic Simulations
-- [Stock Market Simulation](basic/stock_market.md): Model stock price fluctuations with factors like volatility, drift, and market events
-- [Resource Fluctuations Simulation](basic/resource_fluctuations.md): Simulate resource price dynamics with supply disruptions
-- [Product Popularity Simulation](basic/product_popularity.md): Model product demand considering growth, marketing, and promotions
-- [Modelling Market Dynamics](basic/modelling_market_dynamics.md): Theory behind our market dynamics models
+| Paradigm | How time/state advance | Simulators |
+|---|---|---|
+| **Basic** (discrete-time stochastic) | fixed time steps, random perturbation | [Stock Market](basic/stock_market.md), [Resource Fluctuations](basic/resource_fluctuations.md), [Product Popularity](basic/product_popularity.md) |
+| **Discrete-event** | state jumps at scheduled events | [Discrete Event](discrete_event/discrete_event.md), [Queueing](discrete_event/queueing.md) |
+| **Statistical / stochastic** | repeated sampling | [Monte Carlo](statistical/monte_carlo.md), [Markov Chain](statistical/markov_chain.md), [Gillespie SSA](statistical/gillespie.md) |
+| **Cellular automata** | synchronous lattice updates | [Cellular Automaton](cellular/cellular_automaton.md), [Game of Life](cellular/game_of_life.md), [Forest Fire](cellular/forest_fire.md) |
+| **Agent-based** | autonomous interacting agents | [Agent-Based](agent_based/agent_based.md), [Boids](agent_based/boids.md) |
+| **Continuous** (ODE / system dynamics) | continuous time integration | [System Dynamics](system_dynamics/system_dynamics.md) |
+| **Network** | processes on graphs | [Network](network/network.md) |
 
-### Discrete Event Simulations
-- [Discrete Event Simulation](discrete_event/discrete_event.md): General-purpose event-driven simulation engine
-- **Queueing Simulation**: Model service systems with arrivals, queues, and servers (coming soon)
+Applied to specific fields: [Predator-Prey](ecological/predator_prey.md)
+(Lotka-Volterra ecology), [Epidemiological](domain_specific/epidemiological.md)
+(SIR/SEIR disease spread), and [Supply Chain](domain_specific/supply_chain.md)
+(multi-tier inventory).
 
-### Statistical Simulations
-- **Monte Carlo Simulation**: Sample random processes to estimate numerical results (coming soon)
-- **Markov Chain Simulation**: Model stochastic processes with the Markov property (coming soon)
+## Basic Simulations
 
-### Agent-Based Simulations
-- [Agent-Based Simulation](agent_based/agent_based.md): Model complex systems through interactions of autonomous agents
+- [Stock Market](basic/stock_market.md) — price fluctuations with volatility, drift, and market events
+- [Resource Fluctuations](basic/resource_fluctuations.md) — resource price dynamics with supply disruptions
+- [Product Popularity](basic/product_popularity.md) — product demand with growth, marketing, and promotions
+- [Modelling Market Dynamics](basic/modelling_market_dynamics.md) — theory behind the market models
 
-### System Dynamics
-- **System Dynamics Simulation**: Model systems with stocks, flows, and feedback loops (coming soon)
+## Discrete Event Simulations
 
-### Network Simulations
-- [Network Simulation](network/network.md): Model processes on complex networks with different topologies
+- [Discrete Event](discrete_event/discrete_event.md) — general-purpose event-driven engine
+- [Queueing](discrete_event/queueing.md) — M/M/1 and M/M/c service systems (arrivals, queues, servers)
 
-### Ecological Simulations
-- **Predator-Prey Simulation**: Model population dynamics using Lotka-Volterra equations (coming soon)
+## Statistical Simulations
 
-### Domain-Specific Simulations
-- **Epidemiological Simulation**: SIR/SEIR disease spread models (coming soon)
-- **Cellular Automaton Simulation**: Grid-based models with local update rules (coming soon)
-- **Supply Chain Simulation**: Model multi-tier supply chains with inventory management (coming soon)
+- [Monte Carlo](statistical/monte_carlo.md) — sample random processes to estimate numerical results
+- [Markov Chain](statistical/markov_chain.md) — stochastic processes with the Markov property
+- [Gillespie SSA](statistical/gillespie.md) — exact stochastic simulation of chemical kinetics
 
-## Common Features
+## Cellular Automata
 
-All SimLab simulators share these common features:
+- [Cellular Automaton](cellular/cellular_automaton.md) — grid models with local update rules (incl. Game of Life)
+- [Game of Life](cellular/game_of_life.md) — Conway's Life seeded with classic patterns (glider, Gosper gun, ...)
+- [Forest Fire](cellular/forest_fire.md) — Drossel-Schwabl forest fire and self-organised criticality
 
-- **Consistent Interface**: All simulators inherit from BaseSimulation and provide a consistent API
-- **Registry System**: Dynamic discovery and instantiation of simulation models
-- **Parameter Validation**: Comprehensive input validation and error handling
-- **Visualization Support**: Integration with common plotting libraries
-- **Stochastic Processes**: Support for random processes with seed control for reproducibility
-- **Extensibility**: Easy to extend with custom behavior
+## Agent-Based Simulations
 
-## Getting Started
+- [Agent-Based](agent_based/agent_based.md) — emergent behaviour from autonomous interacting agents
+- [Boids](agent_based/boids.md) — Reynolds flocking (separation, alignment, cohesion)
 
-To use any simulation in SimLab, follow this general pattern:
+## System Dynamics
+
+- [System Dynamics](system_dynamics/system_dynamics.md) — stocks, flows, and feedback loops
+
+## Network Simulations
+
+- [Network](network/network.md) — processes (e.g. epidemic spread) on complex network topologies
+
+## Ecological Simulations
+
+- [Predator-Prey](ecological/predator_prey.md) — Lotka-Volterra population dynamics
+
+## Domain-Specific Simulations
+
+- [Epidemiological](domain_specific/epidemiological.md) — SIR/SEIR disease-spread models
+- [Supply Chain](domain_specific/supply_chain.md) — multi-tier supply chains with inventory management
+
+## Common features
+
+All SimLab simulators share:
+
+- **Consistent interface** — every simulator inherits from `BaseSimulation` and exposes `run_simulation()`, `reset()`, and `get_parameters_info()`.
+- **Registry system** — dynamic discovery and instantiation via `SimulatorRegistry`.
+- **Parameter validation** — comprehensive input checking with clear errors.
+- **Reproducibility** — stochastic runs are controlled by `random_seed`.
+- **Visualization support** — results are plain lists/arrays ready for matplotlib/plotly.
+
+## Getting started
 
 ```python
 from sim_lab.core import SimulatorRegistry
 
-# Method 1: Create using the registry
-sim = SimulatorRegistry.create(
-    "SimulatorName",
-    param1=value1,
-    param2=value2
-)
+# Create using the registry
+sim = SimulatorRegistry.create("GameOfLife", pattern="glider", grid_size=(30, 30), days=60)
 
-# Method 2: Create directly
-from sim_lab.core import SpecificSimulation
+# Run and inspect
+live_cells = sim.run_simulation()
+print(f"Live cells over time: {live_cells[:5]} ...")
 
-sim = SpecificSimulation(
-    param1=value1,
-    param2=value2
-)
-
-# Run the simulation
-results = sim.run_simulation()
-
-# Analyze results
-# (Each simulator provides specific methods for analysis)
+# Or instantiate a class directly
+from sim_lab.core import BoidsSimulation
+boids = BoidsSimulation(num_boids=50, days=50, random_seed=42)
+metrics = boids.run_simulation()
 ```
 
-Check the documentation for each specific simulator to learn about its parameters, methods, and examples.
+See each simulator's page for its parameters, examples, and suggested experiments.

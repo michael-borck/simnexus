@@ -1,4 +1,4 @@
-"""Configuration settings for SimNexus."""
+"""Configuration settings for SimLab."""
 
 from .settings import (
     get_settings,

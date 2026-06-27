@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Release script for SimNexus.
+Release script for SimLab.
 
-This script automates the process of building and publishing SimNexus to PyPI.
+This script automates the process of building and publishing SimLab to PyPI.
 It performs several checks before publishing to ensure the release is ready.
 """
 
@@ -105,7 +105,7 @@ def upload_to_pypi(test=False):
 
 def main():
     """Main function."""
-    parser = argparse.ArgumentParser(description="Release SimNexus to PyPI")
+    parser = argparse.ArgumentParser(description="Release SimLab to PyPI")
     parser.add_argument(
         "--test", action="store_true", help="Upload to TestPyPI instead of PyPI"
     )
@@ -139,9 +139,9 @@ def main():
 
     print("\n🎉 Release completed successfully!")
     if args.test:
-        print("\nTest package available at: https://test.pypi.org/project/simnexus/")
+        print("\nTest package available at: https://test.pypi.org/project/sim-lab/")
     else:
-        print("\nPackage available at: https://pypi.org/project/simnexus/")
+        print("\nPackage available at: https://pypi.org/project/sim-lab/")
 
 
 if __name__ == "__main__":

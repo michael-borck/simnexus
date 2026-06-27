@@ -1,4 +1,4 @@
-"""Terminal User Interface for SimNexus."""
+"""Terminal User Interface for SimLab."""
 
 from .app import run_app
 

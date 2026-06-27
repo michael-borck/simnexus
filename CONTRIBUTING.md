@@ -1,12 +1,12 @@
-# Contributing to SimNexus
+# Contributing to SimLab
 
-Thank you for your interest in contributing to SimNexus! We value the contributions from the community, whether they're bug fixes, improvements, or new features. Below, you'll find guidelines on how to contribute effectively.
+Thank you for your interest in contributing to SimLab! We value the contributions from the community, whether they're bug fixes, improvements, or new features. Below, you'll find guidelines on how to contribute effectively.
 
 ## How to Contribute
 
 ### Issues
 
-- **Report a Bug:** If you're experiencing a problem, please check the [issue tracker](https://github.com/teaching-repositories/simnexus/issues) to see if it has already been reported. If not, open a new issue with a descriptive title, a detailed description of the problem, and steps to reproduce it.
+- **Report a Bug:** If you're experiencing a problem, please check the [issue tracker](https://github.com/teaching-repositories/sim-lab/issues) to see if it has already been reported. If not, open a new issue with a descriptive title, a detailed description of the problem, and steps to reproduce it.
 - **Request a Feature:** Have an idea for a new feature? Check the issue tracker to see if it has already been suggested, and if not, you can open a new issue to describe your idea.
 
 ### Pull Requests
@@ -41,4 +41,4 @@ To maintain the quality of the code, please follow our style guide:
 
 ## Thank You
 
-We appreciate your efforts in contributing to SimNexus, and we look forward to your valuable contributions. Happy coding!
+We appreciate your efforts in contributing to SimLab, and we look forward to your valuable contributions. Happy coding!

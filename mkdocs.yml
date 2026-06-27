@@ -57,8 +57,27 @@ nav:
       - Market Dynamics Theory: simulations/basic/modelling_market_dynamics.md
     - Discrete Event Simulations:
       - Discrete Event: simulations/discrete_event/discrete_event.md
-    - Agent-Based Simulation: simulations/agent_based/agent_based.md
-    - Network Simulation: simulations/network/network.md
+      - Queueing: simulations/discrete_event/queueing.md
+    - Statistical Simulations:
+      - Monte Carlo: simulations/statistical/monte_carlo.md
+      - Markov Chain: simulations/statistical/markov_chain.md
+      - Gillespie SSA: simulations/statistical/gillespie.md
+    - Cellular Automata:
+      - Cellular Automaton: simulations/cellular/cellular_automaton.md
+      - Game of Life: simulations/cellular/game_of_life.md
+      - Forest Fire: simulations/cellular/forest_fire.md
+    - Agent-Based Simulations:
+      - Agent-Based: simulations/agent_based/agent_based.md
+      - Boids: simulations/agent_based/boids.md
+    - System Dynamics:
+      - System Dynamics: simulations/system_dynamics/system_dynamics.md
+    - Network Simulations:
+      - Network: simulations/network/network.md
+    - Ecological Simulations:
+      - Predator-Prey: simulations/ecological/predator_prey.md
+    - Domain-Specific Simulations:
+      - Epidemiological: simulations/domain_specific/epidemiological.md
+      - Supply Chain: simulations/domain_specific/supply_chain.md
   - Developer Guide:
     - Architecture: developers/architecture.md
     - Creating New Simulators: developers/creating_simulators.md

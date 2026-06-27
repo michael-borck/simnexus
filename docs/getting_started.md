@@ -11,7 +11,7 @@ SimLab offers flexible installation options depending on your needs:
 For core simulation functionality only:
 
 ```bash
-pip install simnexus
+pip install sim-lab
 ```
 
 ### Full Installation
@@ -19,7 +19,7 @@ pip install simnexus
 For all features including CLI, web interface, and development tools:
 
 ```bash
-pip install simnexus[dev]
+pip install sim-lab[dev]
 ```
 
 ### Component-Specific Installation
@@ -28,10 +28,10 @@ For specific interfaces:
 
 ```bash
 # Command-line interface
-pip install simnexus[cli]
+pip install sim-lab[cli]
 
 # Web interface
-pip install simnexus[web]
+pip install sim-lab[web]
 ```
 
 ### Install from GitHub
@@ -39,7 +39,7 @@ pip install simnexus[web]
 For the latest development version:
 
 ```bash
-pip install git+https://github.com/michael-borck/simnexus.git
+pip install git+https://github.com/teaching-repositories/sim-lab.git
 ```
 
 ## Verify Installation
@@ -47,13 +47,13 @@ pip install git+https://github.com/michael-borck/simnexus.git
 To ensure that SimLab was installed correctly:
 
 ```python
-python -c "import simnexus; print(simnexus.__version__)"
+python -c "import sim_lab; print(sim_lab.__version__)"
 ```
 
 Or using the CLI:
 
 ```bash
-simnexus --version
+simlab --version
 ```
 
 ## Usage Methods
@@ -65,7 +65,7 @@ SimLab offers multiple ways to run simulations:
 Import SimLab in your Python code:
 
 ```python
-from simnexus import StockMarketSimulation
+from sim_lab.core import StockMarketSimulation
 
 # Create a simulation instance
 sim = StockMarketSimulation(
@@ -91,10 +91,10 @@ Run simulations directly from the command line:
 
 ```bash
 # Stock market simulation
-simnexus sim stock run --days 365 --event-day 180 --event-impact -0.2 --output results.csv
+simlab sim stock run --days 365 --event-day 180 --event-impact -0.2 --output results.csv
 
 # Resource fluctuations simulation
-simnexus sim resource run --volatility 0.05 --disruption-day 100 --disruption-severity 0.3
+simlab sim resource run --volatility 0.05 --disruption-day 100 --disruption-severity 0.3
 ```
 
 ### 3. Web Interface
@@ -102,7 +102,7 @@ simnexus sim resource run --volatility 0.05 --disruption-day 100 --disruption-se
 Launch the web interface for interactive simulation:
 
 ```bash
-simnexus ui web
+simlab ui web
 ```
 
 Then open your browser at http://localhost:8000.
@@ -112,7 +112,7 @@ Then open your browser at http://localhost:8000.
 Launch the terminal user interface (TUI):
 
 ```bash
-simnexus ui tui
+simlab ui tui
 ```
 
 ## Example Resources
@@ -123,20 +123,20 @@ SimLab includes comprehensive examples to help you get started:
 - **CLI Examples**: Shell scripts demonstrating command-line capabilities  
 - **Jupyter Notebooks**: Interactive examples for data analysis
 
-See the [examples directory](https://github.com/michael-borck/simnexus/tree/main/examples) in the repository.
+See the [examples directory](https://github.com/teaching-repositories/sim-lab/tree/main/examples) in the repository.
 
 ## Next Steps
 
 - Explore the [API documentation](api.md) for detailed information on simulation classes
 - Try different interfaces: [CLI](cli.md), [TUI](tui.md), or [Web](web.md)
-- Check out the [example code](https://github.com/michael-borck/simnexus/tree/main/examples) for practical applications
+- Check out the [example code](https://github.com/teaching-repositories/sim-lab/tree/main/examples) for practical applications
 
 ## Getting Help
 
 If you encounter any issues or have questions:
 
-- Check the [documentation](https://michael-borck.github.io/simnexus/)
-- Run `simnexus --help` for CLI assistance
+- Check the [documentation](https://teaching-repositories.github.io/sim-lab/)
+- Run `simlab --help` for CLI assistance
 - Contact information is available on the [Contact](contact.md) page
 
 Happy simulating with SimLab\!

@@ -136,6 +136,7 @@ venv.bak/
 
 # Others
 .DS_Store
+._*
 Thumbs.db
 
 # Node.js / npm files (not needed for Python project)

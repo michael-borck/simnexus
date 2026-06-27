@@ -37,7 +37,7 @@ jobs:
 
     - name: Type check with mypy
       run: |
-        mypy simnexus
+        mypy sim_lab
 
     - name: Test with pytest
       run: |

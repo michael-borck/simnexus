@@ -17,7 +17,7 @@ This simulation models the price fluctuations of a critical resource for a busin
 **Example Code**
 
 ```python
-from simnexus import ResourceFluctuationsSimulation
+from sim_lab.core import ResourceFluctuationsSimulation
 import matplotlib.pyplot as plt
 
 # Setting up a moderate volatility and upward drift scenario with a supply disruption.

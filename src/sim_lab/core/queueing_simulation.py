@@ -73,8 +73,11 @@ class QueueingSimulation(DiscreteEventSimulation):
             "value": 0.0                # Current value for results (queue length)
         }
         
-        # Clear event queue and schedule first arrival
+        # Clear the event queue, then schedule the first arrival so the system
+        # is ready to run after a single reset() (the discrete-event engine calls
+        # reset() once at the start of run_simulation).
         self.event_queue = []
+        self._schedule_arrival()
     
     def _schedule_arrival(self) -> None:
         """Schedule the next customer arrival."""
@@ -173,11 +176,9 @@ class QueueingSimulation(DiscreteEventSimulation):
         Returns:
             A list of queue lengths at regular intervals.
         """
-        # Reset and initialize first arrival
-        self.reset()
-        self._schedule_arrival()
-        
-        # Run the simulation using the parent class method
+        # Delegate to the discrete-event engine. It calls reset() exactly once,
+        # and reset() schedules the first arrival, so the event queue is populated
+        # and the loop actually processes events.
         return super().run_simulation()
     
     def get_statistics(self) -> Dict[str, float]:

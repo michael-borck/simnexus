@@ -1,12 +1,12 @@
-# Teaching Guide for SimNexus Simulation Framework
+# Teaching Guide for SimLab Simulation Framework
 
 ## Overview
 
-This teaching guide is designed to help educators integrate the SimNexus Simulation Framework into their coursework. The SimNexus project provides a set of tools for simulating various scenarios, including continuous and discrete systems. It is an ideal resource for introducing students to complex concepts in a controlled and interactive environment.
+This teaching guide is designed to help educators integrate the SimLab Simulation Framework into their coursework. The SimLab project provides a set of tools for simulating various scenarios, including continuous and discrete systems. It is an ideal resource for introducing students to complex concepts in a controlled and interactive environment.
 
 ## Educational Objectives
 
-The primary educational objectives of using the SimNexus Simulation Framework in an academic setting include:
+The primary educational objectives of using the SimLab Simulation Framework in an academic setting include:
 
 - **Understanding Core Principles**: Students will learn the fundamental principles of simulation, including the differences and applications of continuous and discrete event simulations.
 - **Developing Practical Skills**: Through hands-on exercises, students will develop skills in coding, problem-solving, and critical thinking.
@@ -60,18 +60,18 @@ The primary educational objectives of using the SimNexus Simulation Framework in
 - **Sample Notebooks**: Access provided Jupyter notebooks for examples and templates.
 
 
-Absolutely, it is definitely worthwhile to demonstrate how the same repository can be adapted to different educational focuses, such as simulation principles and object-oriented programming (OOP). Highlighting this versatility in your `TEACHING_GUIDE.md` can inspire educators to tailor the content to various courses and learning outcomes. Here’s how you can structure this section to illustrate different potential course focuses using the SimNexus framework.
+Absolutely, it is definitely worthwhile to demonstrate how the same repository can be adapted to different educational focuses, such as simulation principles and object-oriented programming (OOP). Highlighting this versatility in your `TEACHING_GUIDE.md` can inspire educators to tailor the content to various courses and learning outcomes. Here’s how you can structure this section to illustrate different potential course focuses using the SimLab framework.
 
-## Adapting SimNexus to Various Course Focuses
+## Adapting SimLab to Various Course Focuses
 
-SimNexus’s flexible design makes it an excellent resource for courses with varying educational objectives. Below are examples of how the repository can be tailored to focus on different aspects of computer science and engineering education.
+SimLab’s flexible design makes it an excellent resource for courses with varying educational objectives. Below are examples of how the repository can be tailored to focus on different aspects of computer science and engineering education.
 
 ### 1. Simulation Principles Focus
 
 **Objective:** To deepen understanding of simulation techniques and their applications in real-world scenarios.
 
 **Course Examples:**
-- **Systems Modeling and Simulation**: Focus on using SimNexus for modeling complex systems and processes.
+- **Systems Modeling and Simulation**: Focus on using SimLab for modeling complex systems and processes.
 - **Computational Physics or Biology**: Use simulations to explore physical or biological phenomena.
 
 **Module Structure:**
@@ -84,8 +84,8 @@ SimNexus’s flexible design makes it an excellent resource for courses with var
 **Objective:** To enhance proficiency in OOP principles and their practical application in software development.
 
 **Course Examples:**
-- **Advanced Programming Techniques**: Emphasize OOP principles, design patterns, and refactoring using SimNexus.
-- **Software Engineering**: Focus on software design and architecture using OOP methodologies exemplified through SimNexus.
+- **Advanced Programming Techniques**: Emphasize OOP principles, design patterns, and refactoring using SimLab.
+- **Software Engineering**: Focus on software design and architecture using OOP methodologies exemplified through SimLab.
 
 **Module Structure:**
 - Basics of OOP: Classes, Objects, and Encapsulation
@@ -98,7 +98,7 @@ SimNexus’s flexible design makes it an excellent resource for courses with var
 
 **Course Examples:**
 - **Software Development Process**: Introduce students to version control, code reviews, and CI/CD processes.
-- **Collaborative Software Projects**: Use SimNexus as the base for team projects focusing on collaborative development and maintenance.
+- **Collaborative Software Projects**: Use SimLab as the base for team projects focusing on collaborative development and maintenance.
 
 **Module Structure:**
 - Version Control and GitHub Workflow
@@ -107,7 +107,7 @@ SimNexus’s flexible design makes it an excellent resource for courses with var
 
 ### Customizing Modules
 
-Educators are encouraged to mix and match elements from these suggested structures or add new modules based on the specific needs and goals of their courses. SimNexus’s architecture is designed to be robust yet flexible enough to support diverse teaching strategies and learning objectives.
+Educators are encouraged to mix and match elements from these suggested structures or add new modules based on the specific needs and goals of their courses. SimLab’s architecture is designed to be robust yet flexible enough to support diverse teaching strategies and learning objectives.
 
 
 ## Support for Educators

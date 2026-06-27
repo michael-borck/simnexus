@@ -1,4 +1,4 @@
-"""Input/output utilities for SimNexus."""
+"""Input/output utilities for SimLab."""
 
 import os
 import csv

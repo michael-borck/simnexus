@@ -1,4 +1,4 @@
-"""Command-line interface for SimNexus."""
+"""Command-line interface for SimLab."""
 
 # Makes the CLI available
 from .main import app

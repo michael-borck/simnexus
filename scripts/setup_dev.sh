@@ -1,5 +1,5 @@
 #!/bin/bash
-# Setup script for SimNexus development environment
+# Setup script for SimLab development environment
 
 # Exit on error
 set -e

@@ -1,63 +1,89 @@
-# SimNexus Project Roadmap
+# SimLab Project Roadmap
 
-This document outlines the planned development roadmap for transforming SimNexus into a fully-featured simulation toolkit with multiple interfaces.
+This document tracks the state of the SimLab simulation toolkit and the work that
+remains. Items already shipped are checked; open work is listed below by area.
 
-## Core Architecture
+## Status snapshot
 
-- [ ] Refactor existing simulations into a core module structure
-- [ ] Create base simulation classes for common functionality
-- [ ] Improve type hinting and documentation
-- [ ] Implement configuration management system
-- [ ] Add advanced simulation features (callbacks, observers, etc.)
-- [ ] Implement data export/import capabilities
+SimLab currently ships **18 simulators** across seven modelling paradigms, exposed
+through a Python API, a CLI, a TUI, and a web interface. All simulators share a
+`BaseSimulation` interface and a `SimulatorRegistry` for dynamic discovery.
 
-## Interface Development
+Paradigms covered: Basic (discrete-time stochastic), Discrete-event, Statistical /
+stochastic, Cellular automata, Agent-based, Continuous (system dynamics), Network,
+plus ecological and domain-specific collections.
 
-### Importable Package
-- [ ] Ensure clean API for importing in other Python projects
-- [ ] Add comprehensive docstrings for IDE integration
-- [ ] Create usage examples for each simulation type
+## Completed
 
-### Command Line Interface (CLI)
-- [ ] Develop CLI using Click/Typer
-- [ ] Create commands for all simulation types
-- [ ] Add parameter validation and help text
-- [ ] Implement file-based input/output
-- [ ] Add simulation result visualization options
+### Core architecture
+- [x] Core module structure with `BaseSimulation` abstract class
+- [x] `SimulatorRegistry` for dynamic discovery and instantiation
+- [x] Type hinting, parameter validation, and `get_parameters_info()` metadata
+- [x] Reproducible stochastic runs via `random_seed`
 
-### Terminal User Interface (TUI)
-- [ ] Develop TUI using Textual/Rich
-- [ ] Create interactive parameter adjustment screens
-- [ ] Add real-time simulation visualization
-- [ ] Implement simulation playback controls
-- [ ] Add data export capabilities
+### Simulators (18)
+- [x] Basic: Stock Market, Resource Fluctuations, Product Popularity
+- [x] Discrete-event: Discrete Event engine, Queueing (M/M/1, M/M/c)
+- [x] Statistical: Monte Carlo, Markov Chain, Gillespie SSA
+- [x] Cellular automata: Cellular Automaton, Game of Life (pattern catalogue), Forest Fire (Drossel-Schwabl)
+- [x] Agent-based: Agent-Based engine, Boids (Reynolds flocking)
+- [x] Continuous: System Dynamics (Euler + RK45)
+- [x] Network: processes on random / scale-free / small-world graphs
+- [x] Ecological: Predator-Prey (Lotka-Volterra)
+- [x] Domain-specific: Epidemiological (SIR), Supply Chain (multi-tier)
 
-### Web Interface
-- [ ] Create REST API using FastAPI/Flask
-- [ ] Develop frontend using modern web framework
-- [ ] Add interactive visualization components
-- [ ] Implement user session management
-- [ ] Create sharable simulation configurations
+### Interfaces
+- [x] Importable Python package
+- [x] CLI (`simlab`) with command groups
+- [x] Terminal UI (`simlab-tui`)
+- [x] Web interface (`simlab-web`)
+- [x] Visualization helpers (`sim_lab.viz`)
 
-## Visualization
+### Documentation & testing
+- [x] MkDocs Material site with per-simulator pages organised by paradigm
+- [x] pytest tests for every simulator
+- [x] CI workflow (ruff, mypy, pytest)
+- [x] PyPI packaging (`sim-lab`)
 
-- [ ] Abstract visualization from core simulation logic
-- [ ] Support multiple visualization backends
-- [ ] Create interactive plotting capabilities
-- [ ] Add data analysis tools
-- [ ] Implement export to various formats
+### Bug fixes applied during the audit
+- [x] `SupplyChainSimulation.run_simulation()` no longer crashes — added `reset()` to
+      `SupplyChainNode` and its `Factory` / `Distributor` / `Retailer` subclasses.
+- [x] `QueueingSimulation.run_simulation()` now processes events — removed the double
+      `reset()` that wiped the event queue; the first arrival is scheduled in `reset()`.
+- [x] `SystemDynamicsSimulation` RK45 path fixed — wrapped the derivative callable so
+      `scipy.solve_ivp` receives `fun(t, y)` in the correct argument order.
+- [x] Project-wide rename from the legacy "SimNexus" name to "SimLab" (code, docs,
+      scripts, CI, config).
 
-## Documentation & Testing
+## Open work
 
-- [ ] Expand test coverage for all components
-- [ ] Implement CI/CD pipeline
-- [ ] Improve API documentation
-- [ ] Create tutorials for each interface
-- [ ] Add example notebooks
+### Interfaces
+- [ ] Expand CLI coverage: only 7 of 18 simulators have `simlab` commands
+      (stock, resource, product, game-of-life, forest-fire, boids, gillespie). Add
+      commands for the remaining discrete-event, statistical, network, ecological,
+      and domain-specific simulators.
+- [ ] Expose the new simulators (Game of Life, Forest Fire, Boids, Gillespie) in the
+      TUI and web interface.
+- [ ] Sharable simulation configurations (save/load parameter sets).
 
-## Deployment & Distribution
+### Known issues
+- [ ] `QueueingSimulation.get_statistics()["server_utilization"]` is computed as
+      `total_customers / (max_time * num_servers * service_rate)`, which approaches
+      `(1 - rho) * rho` rather than the true utilization `rho`. Re-instrument with
+      busy-time tracking so the statistic matches its name.
+- [ ] The codebase uses `typing.Dict` / `typing.List` style throughout; under the
+      project's enabled Ruff `UP` rules these are deprecated in favour of `dict` /
+      `list`. Run a one-off `ruff check --select UP --fix` pass once the formatter is
+      wired into CI.
+- [ ] `AgentBasedSimulation.reset()` clears metrics but does not restore agent state;
+      subclasses that need reproducible re-runs (e.g. Boids) override it. Consider
+      pushing a general "snapshot initial agents" mechanism into the base class.
 
-- [ ] Package for PyPI distribution
-- [ ] Create Docker images for web deployment
-- [ ] Develop standalone binaries for CLI/TUI
-- [ ] Add cloud deployment options
+### Documentation & testing
+- [ ] Add example notebooks for the new simulators (Boids, Gillespie, Forest Fire).
+- [ ] Property-based / fuzz tests for parameter validation edge cases.
+- [ ] Performance benchmarks for the larger engines (Network, Supply Chain).
+
+### Deployment
+- [ ] Docker image for the web interface.
+- [ ] Cloud-deployment guide.

@@ -1,4 +1,4 @@
-"""Visualization utilities for SimNexus."""
+"""Visualization utilities for SimLab."""
 
 import matplotlib.pyplot as plt
 from typing import List, Optional, Tuple, Dict, Any

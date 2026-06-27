@@ -1,4 +1,4 @@
-"""Utility functions for SimNexus."""
+"""Utility functions for SimLab."""
 
 from .io import (
     save_to_csv,

@@ -1,4 +1,4 @@
-"""Validation utilities for SimNexus."""
+"""Validation utilities for SimLab."""
 
 from typing import Any, Optional, Tuple, List, Dict, Callable
 

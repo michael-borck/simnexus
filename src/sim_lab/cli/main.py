@@ -33,6 +33,17 @@ sim_app.add_typer(stock_app, name="stock")
 sim_app.add_typer(resource_app, name="resource")
 sim_app.add_typer(product_app, name="product")
 
+# Subgroups for additional simulations
+game_of_life_app = typer.Typer(help="Game of Life simulation commands")
+forest_fire_app = typer.Typer(help="Forest fire simulation commands")
+boids_app = typer.Typer(help="Boids flocking simulation commands")
+gillespie_app = typer.Typer(help="Gillespie SSA simulation commands")
+
+sim_app.add_typer(game_of_life_app, name="game-of-life")
+sim_app.add_typer(forest_fire_app, name="forest-fire")
+sim_app.add_typer(boids_app, name="boids")
+sim_app.add_typer(gillespie_app, name="gillespie")
+
 console = Console()
 
 
@@ -227,6 +238,135 @@ def run_product_simulation(
         plt.tight_layout()
         plt.show()
 
+
+@game_of_life_app.command("run")
+def run_game_of_life(
+    pattern: str = typer.Option("glider", help="Pattern name (glider, blinker, gosper_glider_gun, ...)"),
+    grid_size: int = typer.Option(50, help="Square grid size"),
+    days: int = typer.Option(100, help="Number of generations"),
+    random_seed: Optional[int] = typer.Option(42, help="Random seed (ignored for fixed patterns)"),
+    viz: bool = typer.Option(False, help="Visualize the final grid"),
+):
+    """Run Conway's Game of Life from a named pattern."""
+    from sim_lab.core import GameOfLifeSimulation
+    sim = GameOfLifeSimulation(
+        grid_size=(grid_size, grid_size), pattern=pattern, days=days, random_seed=random_seed
+    )
+    live = sim.run_simulation()
+    console.print(f"[bold]Game of Life[/bold] - pattern '{pattern}' on {grid_size}x{grid_size}")
+    console.print(f"Generations: {days} | final live cells: {int(live[-1])} | peak: {int(max(live))}")
+    cycle = sim.detect_stable_pattern()
+    if cycle is not None:
+        console.print(f"Stable pattern detected: cycle length {cycle}")
+    if viz:
+        import matplotlib.pyplot as plt
+        _, ax = plt.subplots()
+        ax.imshow(sim.get_all_states()[-1], cmap="binary")
+        ax.set_title(f"Game of Life - '{pattern}' (gen {days})")
+        plt.show()
+
+
+@forest_fire_app.command("run")
+def run_forest_fire(
+    grid_size: int = typer.Option(50, help="Square grid size"),
+    initial_density: float = typer.Option(0.5, help="Initial tree fraction"),
+    p: float = typer.Option(1e-4, help="Lightning (ignition) probability"),
+    g: float = typer.Option(1e-2, help="Regrowth probability"),
+    days: int = typer.Option(100, help="Number of generations"),
+    random_seed: Optional[int] = typer.Option(42, help="Random seed"),
+    viz: bool = typer.Option(False, help="Visualize tree/fire counts over time"),
+):
+    """Run a Drossel-Schwabl forest fire cellular automaton."""
+    from sim_lab.core import ForestFireSimulation
+    sim = ForestFireSimulation(
+        grid_size=(grid_size, grid_size), initial_density=initial_density,
+        p=p, g=g, days=days, random_seed=random_seed,
+    )
+    trees = sim.run_simulation()
+    stats = sim.get_statistics()
+    console.print("[bold]Forest Fire[/bold] (Drossel-Schwabl)")
+    console.print(
+        f"Mean trees: {stats['mean_trees']:.1f} | peak fires: {int(stats['max_fires'])} | "
+        f"final tree fraction: {stats['final_tree_fraction']:.3f}"
+    )
+    if viz:
+        import matplotlib.pyplot as plt
+        plt.figure(figsize=(10, 5))
+        plt.plot(trees, label="trees")
+        plt.plot(sim.fire_history, label="fires")
+        plt.xlabel("Generation")
+        plt.ylabel("Cells")
+        plt.legend()
+        plt.title("Forest Fire Simulation")
+        plt.show()
+
+
+@boids_app.command("run")
+def run_boids(
+    num_boids: int = typer.Option(100, help="Number of boids"),
+    width: float = typer.Option(100.0, help="Field width"),
+    height: float = typer.Option(100.0, help="Field height"),
+    perception_radius: float = typer.Option(10.0, help="Neighbour perception radius"),
+    days: int = typer.Option(100, help="Number of steps"),
+    random_seed: Optional[int] = typer.Option(42, help="Random seed"),
+    viz: bool = typer.Option(False, help="Visualize flock metrics over time"),
+):
+    """Run a Reynolds boids flocking simulation."""
+    from sim_lab.core import BoidsSimulation
+    sim = BoidsSimulation(
+        num_boids=num_boids, width=width, height=height,
+        perception_radius=perception_radius, days=days, random_seed=random_seed,
+    )
+    metrics = sim.run_simulation()
+    final = metrics[-1]
+    console.print("[bold]Boids[/bold] flocking (Reynolds)")
+    console.print(
+        f"Boids: {final['num_boids']} | mean speed: {final['mean_speed']:.3f} | "
+        f"flock spread: {final['flock_spread']:.2f}"
+    )
+    if viz:
+        import matplotlib.pyplot as plt
+        steps = range(len(metrics))
+        plt.figure(figsize=(10, 5))
+        plt.plot(steps, [m["mean_speed"] for m in metrics], label="mean speed")
+        plt.plot(steps, [m["flock_spread"] for m in metrics], label="flock spread")
+        plt.xlabel("Step")
+        plt.legend()
+        plt.title("Boids Flock Metrics")
+        plt.show()
+
+
+@gillespie_app.command("run")
+def run_gillespie(
+    model: str = typer.Option("decay", help="Predefined model (decay)"),
+    a0: int = typer.Option(100, help="Initial A molecules (decay model)"),
+    rate: float = typer.Option(0.1, help="Reaction rate (decay model)"),
+    max_time: float = typer.Option(50.0, help="Time horizon"),
+    random_seed: Optional[int] = typer.Option(42, help="Random seed"),
+    viz: bool = typer.Option(False, help="Visualize the trajectory"),
+):
+    """Run a Gillespie stochastic simulation (chemical kinetics)."""
+    from sim_lab.core import create_decay_model
+    if model != "decay":
+        console.print(f"[yellow]Unknown model '{model}'; using 'decay'.[/yellow]")
+    sim = create_decay_model(a0=a0, rate=rate, max_time=max_time, random_seed=random_seed)
+    sim.run_simulation()
+    stats = sim.get_statistics()
+    console.print("[bold]Gillespie SSA[/bold] - A -> B decay")
+    console.print(
+        f"Events: {int(stats['events'])} | final time: {stats['final_time']:.2f} | "
+        f"final A: {int(stats['A'])} | final B: {int(stats['B'])}"
+    )
+    if viz:
+        import matplotlib.pyplot as plt
+        plt.figure(figsize=(10, 5))
+        plt.step(sim.get_times(), sim.get_species("A"), where="post", label="A")
+        plt.step(sim.get_times(), sim.get_species("B"), where="post", label="B")
+        plt.xlabel("Time")
+        plt.ylabel("Molecules")
+        plt.legend()
+        plt.title("Gillespie SSA - A -> B decay")
+        plt.show()
 
 @ui_app.command("web")
 def launch_web(

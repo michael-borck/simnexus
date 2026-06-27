@@ -1,4 +1,4 @@
-"""Configuration settings for SimNexus."""
+"""Configuration settings for SimLab."""
 
 import os
 from pathlib import Path
@@ -7,7 +7,7 @@ from typing import Dict, Any, Optional
 # Define default settings
 DEFAULT_SETTINGS = {
     # General settings
-    "results_dir": os.path.expanduser("~/simnexus_results"),
+    "results_dir": os.path.expanduser("~/sim_lab_results"),
     
     # Stock market simulation defaults
     "stock_market": {

@@ -16,7 +16,7 @@ This simulation models the dynamics of product popularity, allowing students to 
 ## Example Code
 
 ```python
-from simnexus import ProductPopularitySimulation
+from sim_lab.core import ProductPopularitySimulation
 import matplotlib.pyplot as plt
 
 # Setting up a scenario with moderate natural growth and a significant marketing campaign.

@@ -1,4 +1,4 @@
-"""Visualization utilities for SimNexus."""
+"""Visualization utilities for SimLab."""
 
 from .plots import (
     plot_time_series,

@@ -7,7 +7,7 @@ SimLab provides a Terminal User Interface (TUI) for running simulations interact
 Make sure you have installed SimLab with the TUI dependencies:
 
 ```bash
-pip install simnexus[dev]
+pip install sim-lab[dev]
 ```
 
 ## Running the TUI
@@ -15,7 +15,7 @@ pip install simnexus[dev]
 Launch the TUI with:
 
 ```bash
-simnexus ui tui
+simlab ui tui
 ```
 
 ## Interface Overview
@@ -78,4 +78,4 @@ The results screen displays:
 
 ### Saving Results
 
-Results can be saved to CSV files for further analysis. The files are saved to your home directory in a `simnexus_results` folder.
+Results can be saved to CSV files for further analysis. The files are saved to your home directory in a `sim_lab_results` folder.

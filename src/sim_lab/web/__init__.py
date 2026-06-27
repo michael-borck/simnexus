@@ -1,4 +1,4 @@
-"""Web interface for SimNexus."""
+"""Web interface for SimLab."""
 
 from .app import create_app
 

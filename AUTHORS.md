@@ -12,7 +12,7 @@ This project was made possible thanks to the following contributors:
 ## AI Co-Authors
 
 - **ChatGPT (OpenAI)**  
-  Provided design and code-generation assistance for the original SimNexus module.  
+  Provided design and code-generation assistance for the original SimLab module.
   Helped with architecture, packaging, documentation, and workflow automation.  
   Contributions include:  
   - Project scaffolding and CI/CD  
