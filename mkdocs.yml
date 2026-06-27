@@ -81,6 +81,51 @@ nav:
   - Projects:
     - Gallery: projects/index.md
     - Template: project-template.md
+    - Basic:
+      - Market Crash and Recovery: projects/basic/stock-market-crash-recovery.md
+      - Moving-Average Strategy: projects/basic/moving-average-strategy.md
+      - Supply Disruption Scenarios: projects/basic/resource-supply-disruption.md
+      - Hedging Resource Price Risk: projects/basic/resource-hedging.md
+      - Viral Product Launch: projects/basic/product-viral-launch.md
+      - Marketing Campaign ROI: projects/basic/product-marketing-roi.md
+    - Discrete-Event:
+      - Bank Service Desk: projects/discrete_event/de-bank-service.md
+      - Production Line: projects/discrete_event/de-production-line.md
+      - Staffing for a Target Wait Time: projects/discrete_event/queueing-staffing-target.md
+      - M/M/1 vs M/M/c: projects/discrete_event/queueing-mm1-vs-mmc.md
+    - Statistical:
+      - Estimate π: projects/statistical/monte-carlo-estimate-pi.md
+      - Portfolio Risk (VaR): projects/statistical/monte-carlo-portfolio-risk.md
+      - Weather Prediction: projects/statistical/markov-weather-model.md
+      - Custom Markov System: projects/statistical/markov-custom-system.md
+      - Stochastic Decay vs ODE: projects/statistical/gillespie-decay-vs-ode.md
+      - Stochastic Lotka-Volterra: projects/statistical/gillespie-lotka-volterra.md
+    - Cellular Automata:
+      - Custom CA Rule: projects/cellular/ca-custom-rule.md
+      - Traffic Flow: projects/cellular/ca-traffic-nagel-schreckenberg.md
+      - Oscillator Zoo: projects/cellular/gol-oscillator-zoo.md
+      - Glider Gun Factory: projects/cellular/gol-glider-gun-factory.md
+      - Forest Fire & SOC: projects/cellular/forest-fire-soc.md
+      - Lightning vs Growth: projects/cellular/forest-fire-lightning-growth.md
+    - Agent-Based:
+      - Schelling Segregation: projects/agent_based/ab-schelling-segregation.md
+      - Opinion Dynamics: projects/agent_based/ab-opinion-dynamics.md
+      - Flocking vs Milling: projects/agent_based/boids-flocking-vs-milling.md
+      - Predator Pursuit: projects/agent_based/boids-predator-pursuit.md
+    - System Dynamics:
+      - SIR as System Dynamics: projects/system_dynamics/sd-sir-model.md
+      - Limits to Growth: projects/system_dynamics/sd-limits-to-growth.md
+    - Network:
+      - Epidemic Spread on Networks: projects/network/net-epidemic-topology.md
+      - Influence Maximisation: projects/network/net-influence-maximization.md
+    - Ecological:
+      - Predator-Prey Phase Portrait: projects/ecological/pp-phase-portrait.md
+      - Stochastic Predator-Prey: projects/ecological/pp-stochastic-noise.md
+    - Domain-Specific:
+      - Herd Immunity Threshold: projects/domain_specific/epi-herd-immunity.md
+      - Flatten the Curve: projects/domain_specific/epi-flatten-the-curve.md
+      - The Bullwhip Effect: projects/domain_specific/supply-bullwhip.md
+      - Multi-Echelon Inventory: projects/domain_specific/supply-multi-echelon.md
   - For Instructors:
     - Instructor Guide: instructor-guide.md
     - Classroom Setup: classroom-setup.md

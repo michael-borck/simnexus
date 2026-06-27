@@ -142,4 +142,4 @@ After calling `run_simulation()`, the following methods summarise the run:
 - `get_reproduction_number()` — returns $\mathcal{R}_0 = \beta/\gamma$.
 - `get_final_sizes()` — returns the last-day value of each compartment.
 
-See [src/sim_lab/core/epidemiological_simulation.py](../../../src/sim_lab/core/epidemiological_simulation.py) for the full implementation.
+See [src/sim_lab/core/epidemiological_simulation.py](https://github.com/michael-borck/sim-lab/blob/main/src/sim_lab/core/epidemiological_simulation.py) for the full implementation.
