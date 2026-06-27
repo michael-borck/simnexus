@@ -39,37 +39,43 @@ pip install sim-lab[tui]
 
 ## Simulation Categories
 
-SimLab includes a wide range of simulation types:
+SimLab ships **18 simulators** organised by modelling paradigm — how state and time advance:
 
-### Basic Simulations
-- **Stock Market**: Model stock price fluctuations with volatility, drift, and market events
-- **Resource Fluctuations**: Simulate resource price dynamics with supply disruptions
-- **Product Popularity**: Model product demand considering growth, marketing, and promotions
+### Basic (discrete-time stochastic)
+- **Stock Market** — price fluctuations with volatility, drift, and market events
+- **Resource Fluctuations** — resource price dynamics with supply disruptions
+- **Product Popularity** — product demand with growth, marketing, and promotions
 
-### Discrete Event Simulations
-- **Discrete Event**: General-purpose event-driven simulation engine
-- **Queueing**: Model service systems with arrivals, queues, and servers
+### Discrete-Event
+- **Discrete Event** — general-purpose event-driven engine
+- **Queueing** — M/M/1 and M/M/c service systems (arrivals, queues, servers)
 
-### Statistical Simulations
-- **Monte Carlo**: Sample random processes to estimate numerical results
-- **Markov Chain**: Model stochastic processes with the Markov property
+### Statistical / Stochastic
+- **Monte Carlo** — sample random processes to estimate numerical results
+- **Markov Chain** — stochastic processes with the Markov property
+- **Gillespie SSA** — exact stochastic simulation of chemical kinetics
 
-### Agent-Based Simulation
-- Model complex systems through interactions of autonomous agents
+### Cellular Automata
+- **Cellular Automaton** — grid models with local update rules (incl. Game of Life)
+- **Game of Life** — Conway's Life seeded with classic patterns (glider, Gosper gun, ...)
+- **Forest Fire** — Drossel-Schwabl forest fire and self-organised criticality
 
-### System Dynamics
-- Model systems with stocks, flows, and feedback loops
+### Agent-Based
+- **Agent-Based** — emergent behaviour from autonomous interacting agents
+- **Boids** — Reynolds flocking (separation, alignment, cohesion)
 
-### Network Simulations
-- Model processes on complex networks with different topologies
+### Continuous / System Dynamics
+- **System Dynamics** — stocks, flows, and feedback loops (Euler + RK45)
 
-### Ecological Simulations
-- **Predator-Prey**: Model population dynamics using Lotka-Volterra equations
+### Network
+- **Network** — processes (e.g. epidemic spread) on complex network topologies
 
-### Domain-Specific Simulations
-- **Epidemiological**: SIR/SEIR disease spread models
-- **Cellular Automaton**: Grid-based models with local update rules
-- **Supply Chain**: Model multi-tier supply chains with inventory management
+### Ecological
+- **Predator-Prey** — Lotka-Volterra population dynamics
+
+### Domain-Specific
+- **Epidemiological** — SIR disease-spread models
+- **Supply Chain** — multi-tier supply chains with inventory management
 
 ## Basic Usage
 
