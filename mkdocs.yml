@@ -78,6 +78,14 @@ nav:
     - Domain-Specific Simulations:
       - Epidemiological: simulations/domain_specific/epidemiological.md
       - Supply Chain: simulations/domain_specific/supply_chain.md
+  - Projects:
+    - Gallery: projects/index.md
+    - Template: project-template.md
+  - For Instructors:
+    - Instructor Guide: instructor-guide.md
+    - Classroom Setup: classroom-setup.md
+    - Assessment Guide: assessment-guide.md
+  - Notebooks: notebooks.md
   - Developer Guide:
     - Architecture: developers/architecture.md
     - Creating New Simulators: developers/creating_simulators.md
